@@ -1,0 +1,19 @@
+{
+  "name": "unojs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "collect.js": "^4.0.28",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.9",
+    "@types/uuid": "^3.4.4"
+  }
+}

@@ -57,9 +57,7 @@ export class Player {
         });
     }
 
-    toString(): string {
-        return this.name;
-    }
+    toString = (): string => this.name;
 }
 
 export namespace Player {

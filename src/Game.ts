@@ -18,7 +18,7 @@ export interface IGameEvents {
     string: (...args: any[]) => any;
 }
 
-export interface IGameEventEmitter<T>{
+export interface IGameEventEmitter<T> {
     on<K extends keyof T>(event: K, listener: T[K]): this;
 }
 
@@ -85,8 +85,8 @@ export class Game implements IGameEventEmitter<IGameEvents> {
     get eventStack(): string {
         let output: string = "";
 
-        for(let event of this._events.all()){
-            output += `${event.event}\n`;
+        for (let event of this._events.all()) {
+            output += `${event.event}:${event.args}\n`;
         }
 
         return output;
@@ -154,11 +154,11 @@ export class Game implements IGameEventEmitter<IGameEvents> {
         let card = this._uno.drawCard();
         player.addCardToHand(card);
 
+        this.emit(Game.Events.PlayerDrewCard, player, card);
+
         if (endsTurn) {
             this.advanceTurn();
         }
-
-        this.emit(Game.Events.PlayerDrewCard, player, card);
 
         return card;
     }
@@ -187,7 +187,7 @@ export class Game implements IGameEventEmitter<IGameEvents> {
             case Card.Type.Wild_Draw:
                 card.color = newColor;
                 this.emit(Game.Events.ColorWasSet, newColor);
-                if(card.type === Card.Type.Wild_Draw){
+                if (card.type === Card.Type.Wild_Draw) {
                     this.nextPlayerDrawsCards(4);
                 }
                 break;
@@ -320,7 +320,7 @@ export class Game implements IGameEventEmitter<IGameEvents> {
                 player.addCardToHand(card);
             }
 
-            this.emit(Game.Events.PlayerDrewStartHand, player.hand);
+            this.emit(Game.Events.PlayerDrewStartHand, player, player.hand);
         })
     }
 
@@ -331,17 +331,17 @@ export class Game implements IGameEventEmitter<IGameEvents> {
 
 export namespace Game {
     export enum Events {
-        GameStarted         = 'game-started',
-        GameEnded           = 'game-ended',
-        PlayerJoinedGame    = 'player-joined-game',
-        PlayerDrewCard      = 'player-drew-card',
+        GameStarted = 'game-started',
+        GameEnded = 'game-ended',
+        PlayerJoinedGame = 'player-joined-game',
+        PlayerDrewCard = 'player-drew-card',
         PlayerDrewStartHand = 'player-drew-start-hand',
-        PlayerPlayedCard    = 'player-played-card',
-        PlayerWonTheGame    = 'player-won-the-game',
-        TurnAdvanced        = 'turn-advanced',
-        PlayerSkipped       = 'player-skipped',
-        PlayReversed        = 'play-reversed',
-        ColorWasSet         = 'color-was-set',
-        DeckWasShuffled     = 'deck-was-shuffled',
+        PlayerPlayedCard = 'player-played-card',
+        PlayerWonTheGame = 'player-won-the-game',
+        TurnAdvanced = 'turn-advanced',
+        PlayerSkipped = 'player-skipped',
+        PlayReversed = 'play-reversed',
+        ColorWasSet = 'color-was-set',
+        DeckWasShuffled = 'deck-was-shuffled',
     }
 }

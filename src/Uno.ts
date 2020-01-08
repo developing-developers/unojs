@@ -101,8 +101,6 @@ export class Uno {
         this.shuffleDeck();
         this.shuffleDeck();
 
-        console.log(`Shuffling... ${this.cardsInDeck} cards in Deck.`);
-
         this._discard = collect<Card>([cardInPlay]);
     }
 

@@ -1,19 +1,40 @@
 {
-  "name": "unojs",
+  "name": "@developing-developers/unojs",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Javascript implementation of Uno card game.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Braydee Johnson",
+  "license": "MIT",
+  "bin": {
+    "uno": "./index.js"
+  },
   "dependencies": {
     "collect.js": "^4.0.28",
+    "commander": "^2.19.0",
+    "faker": "^4.1.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@types/faker": "^4.1.8",
     "@types/node": "^10.12.9",
     "@types/uuid": "^3.4.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developing-developers/unojs.git"
+  },
+  "keywords": [
+    "uno",
+    "javascript",
+    "card",
+    "game"
+  ],
+  "bugs": {
+    "url": "https://github.com/developing-developers/unojs/issues"
+  },
+  "homepage": "https://github.com/developing-developers/unojs#readme"
 }
